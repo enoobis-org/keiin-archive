@@ -1,0 +1,140 @@
+<Window x:Class="CountingSpacesN1._12._21.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CountingSpacesN1._12._21"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="640" Width="400">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="20 10 0 10"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="Button" x:Key="buttonStyle1">
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style TargetType="Button" x:Key="buttonStyle2">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <TextBlock Text="Enter any text:"/>
+        <TextBox x:Name="textBoxEnteredText" Width="350"/>
+        <Button x:Name="btnAdd" Content="Add the text to the list" 
+                Style="{StaticResource buttonStyle1}" Click="btnAdd_Click"/>
+        <ListBox x:Name="aListBox" Width="380" Height="200" Margin="5"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="392">
+        <TextBlock Text="The number of spaces:"/>
+            <Label x:Name="aLabelForSpace"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btnCountSpace" Content="Count Space" 
+                    Style="{StaticResource buttonStyle2}" Click="btnCountSpace_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="392">
+            <TextBlock Text="The quantity of T:"/>
+            <Label x:Name="aLabelForSpace2"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btnQuantityOfT" Content="Quantity of T" 
+                    Style="{StaticResource buttonStyle2}" Click="btnQuantityOfT_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="392">
+            <TextBlock Text="The quantity of words:"/>
+            <Label x:Name="aLabelForSpace3"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btnQuantityOfWords" Content="Quantity of words" 
+                    Style="{StaticResource buttonStyle2}" Click="btnQuantityOfWords_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="btnExit" Content="Exit" 
+                    Style="{StaticResource buttonStyle2}" Click="btnExit_Click"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
+
+
+.............
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace CountingSpacesN1._12._21
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            aListBox.Items.Add(textBoxEnteredText.Text);
+            textBoxEnteredText.Text = "";
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(1);
+            // Exit method will take 3 parametes: 1 - the app is executed correctly
+            //                                    0 - the app is not excuted correctly
+            //                                   -1 - there is an exaption handle
+            //Close();   
+        }
+
+        private void btnCountSpace_Click(object sender, RoutedEventArgs e)
+        {
+            int index = aListBox.SelectedIndex;
+            int count = 0;
+            string str = (string)aListBox.Items[index];
+            for (int i = 0; i < str.Length; i++)
+                if (str[i] == ' ') count++;
+            aLabelForSpace.Content = count.ToString();
+        }
+
+        private void btnQuantityOfT_Click(object sender, RoutedEventArgs e)
+        {
+            int index = aListBox.SelectedIndex;
+            int count = 0;
+            string str = (string)(aListBox.Items[index]);
+            for (int i = 0; i < str.Length; i++)
+                if (str[i] == 'T' | str[i] == 't') count++;
+            aLabelForSpace2.Content = count.ToString();
+        }
+
+        private void btnQuantityOfWords_Click(object sender, RoutedEventArgs e)
+        {
+            int index = aListBox.SelectedIndex;
+            int count = 0;
+            string str = (string)(aListBox.Items[index]);
+            for (int i = 0; i < str.Length; i++)
+                if (str[i] == ' ') count++;
+            count++;
+            aLabelForSpace3.Content = count.ToString();
+        }
+    }
+}

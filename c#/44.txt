@@ -1,0 +1,66 @@
+using System;
+using System.Collections.Generic;
+using System.Collections;
+
+namespace StackAndQueuesConsoleAppMN_25._03._22
+{
+    class Person
+    {
+        private string name;
+        public string Name
+            {set; get;}
+    }
+
+    class Color
+    {
+        private string colorName;
+        public string ColorName
+        { get; set; }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // define Stack variable
+            Stack myStack = new Stack();
+            // next way of defining Stack variable
+            string[] names = { "Anna", "Maks", "Daniil" };
+            Stack someNames = new Stack(names);
+            // another way of defining Stack variable
+            Stack arabianNumber = new Stack(10);
+            Stack <int> numbers = new Stack <int> ();
+            numbers.Push(3);
+            numbers.Push(5);
+            numbers.Push(30);
+            Console.WriteLine("The last element in a stack {0}", numbers.Pop());
+            if (numbers.Count>0)
+            Console.WriteLine("The last element in a stack using Peek {0}", numbers.Peek());
+            Console.WriteLine("The last element in a stack {0}", numbers.Pop());
+            Console.WriteLine("The number of elements in a Stack: {0}", numbers.Count);
+            Stack <string> ITc20 = new Stack<string>(5);
+            /*for (int i=0; i<5; i++)
+            {
+                Console.WriteLine("Please, enter the name of the student: ");
+                string name = Console.ReadLine();s
+                ITc20.Push(name);
+            }
+            if (ITc20.Count > 0)
+                Console.WriteLine("The last added name in a stack is {0}", ITc20.Peek());*/
+
+            Stack<Person>somePerson = new Stack <Person> ();
+            somePerson.Push(new Person() { Name = "Anna" });
+            somePerson.Push(new Person() { Name = "Bob" });
+            somePerson.Push(new Person() { Name = "John" });
+            foreach (Person item in somePerson)
+                Console.WriteLine(item.Name + " ");
+            Console.WriteLine(" ");
+            Stack <Color> tlColor = new Stack <Color> ();
+            tlColor.Push(new Color() { ColorName = "Red" });
+            tlColor.Push(new Color() { ColorName = "Green" });
+            tlColor.Push(new Color() { ColorName = "Yellow" });
+            foreach (Color item in tlColor)
+                Console.WriteLine(item.ColorName + " ");
+            Console.ReadKey();
+        }
+    }
+}

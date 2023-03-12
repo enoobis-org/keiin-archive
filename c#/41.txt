@@ -1,0 +1,49 @@
+<Window x:Class="WorkingWithDirectoryMN_11_03_22.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WorkingWithDirectoryMN_11_03_22"
+        mc:Ignorable="d"
+        Title="WorkingWithDirectoryClass" Height="450" Width="800">
+    <StackPanel Width="380" Height="80">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Image Source="images\disk.png" Width="96" Height="96"/>
+        <StackPanel Width="125" Height="Auto" Grid.Column="1"
+                    HorizontalAlignment="Left">
+            <Label x:Name="driveName"/>
+            <ProgressBar x:Name="driveStave" Height="30" Width="115" Minimum="0" Maximum="20" Value="15"/>
+            <Label x:Name="totalFreeSpace"/>
+        </StackPanel>
+    </Grid>
+    </StackPanel>
+</Window>
+
+
+
+....................................................................................
+
+
+using System;
+using System.Windows;
+using System.IO;
+
+namespace WorkingWithDirectoryMN_11_03_22
+{
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+            DriveInfo[] myDrive = DriveInfo.GetDrives();
+            DriveInfo drive = myDrive[0];
+            driveName.Content = drive.VolumeLabel + " ("+drive.Name+")";
+            totalFreeSpace.Content = drive.TotalFreeSpace / (1024 * 1024 * 1024) + "GB free of " +
+                drive.TotalSize / (1024 * 1024 * 1024) + " GB";
+        }
+    }
+}

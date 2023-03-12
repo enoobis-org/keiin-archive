@@ -1,0 +1,104 @@
+.html
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="#"> <img src="LOGO.jpg" class="logo"> </a>
+        <ul>
+           <li><a href="#">Menu-1</a></li>
+           <li><a href="#">Menu-2</a></li>
+           <li><a href="#">Menu-3</a></li>
+           <li><a href="#">Menu-4</a></li>
+        </ul>
+    </header>   
+    <div class="Content">
+        <div class="textBox">
+<h2> This is a group ITc-20 <br> many students who want to be not a programmer but <span> the best programmer in the world </span> </h2>
+<p>This is a papagraph
+    This is a papagraph
+    This is a papagraph
+</p>
+<a href="#"> Learn more </a> 
+        </div>
+        <div class="imgBox">
+            <img src="book1.jpg" class="BookClass">
+        </div>
+    </div>
+</body>
+</html>
+
+
+---------------------------------------------------------------------------------
+.css
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@1,900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', 'Times New Roman', sans-serif;
+}
+header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header .logo{
+position: relative;
+max-width: 80px;
+}
+header ul{ position: relative;
+display: flex;
+}
+header ul li{list-style: none;}
+header ul li a{
+display: inline-block;
+color: #333;
+font-weight: 400;
+margin-left: 40px;
+text-decoration: none;
+}
+.Content{
+position: relative;
+width: 100%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.Content .textBox{
+    position: relative;
+    max-width: 600px;
+}
+
+.Content .textBox h2{
+    color: #333;
+    font-size: 4em;
+    line-height: 1.4em;
+    font-weight: 500;
+}
+.Content .textBox h2 span{
+    color: #017143;
+    font-size: 1.2em;
+    font-weight: 900;
+}
+.Content .textBox p{
+    color: #333;
+}
+
+

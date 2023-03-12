@@ -1,0 +1,32 @@
+
+// 4 - code
+using System;
+
+namespace holiday_Assignments
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            while (true)
+            {
+                string num;
+                Console.Write("type some thing man : ");
+                num = Console.ReadLine();
+                int count = 0;
+                Console.Write("text : {0}\n", num);
+                foreach (string word in num.Split(new char[] { ' ' }))
+                {
+                    Console.WriteLine("word : {0}: {1}", word, word.Length);
+                }
+                for (int i = 0; i < num.Length; i++)
+                {
+                    if (num[i] != ' ')
+                        count++;
+                }
+                Console.WriteLine("all: " + count);
+                Console.WriteLine(" ");
+            }
+        }
+    }
+}

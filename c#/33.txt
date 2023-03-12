@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HomeWorkEnumNurbai
+{
+    enum Types
+    {
+        ByName = 1,
+        ByType = 2,
+        BySize = 3,
+        ByData = 4
+    };
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            while (true)
+            {
+                Types currentTypeStates;
+                Console.WriteLine("1-ByName \n2-ByType \n3-BySize \n4-ByData");
+                Console.WriteLine("Enter the volume state: ");
+                int typeState = Convert.ToInt32(Console.ReadLine());
+                currentTypeStates = (Types)typeState;
+                switch (currentTypeStates)
+                {
+                    case Types.ByName:
+                        Console.WriteLine("The type ByName has been turned on"); break;
+                    case Types.ByType:
+                        Console.WriteLine("The type ByType has been turned on"); break;
+                    case Types.BySize:
+                        Console.WriteLine("The type BySize has been turned on"); break;
+                    case Types.ByData:
+                        Console.WriteLine("The type ByData has been turned on"); break;
+                }
+                Console.ReadKey();
+            }
+        }
+    }
+}

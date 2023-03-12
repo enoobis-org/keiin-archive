@@ -1,0 +1,51 @@
+using System;
+
+namespace WorkingWithEnumN31._01._22
+{
+	/*enum Volume 
+	{
+		Low,
+		Medium,
+		High
+	};*/
+	class Program
+	{
+		/*static void Main(string[] args)
+		{
+			Volume currentVolume = new Volume();
+			Console.WriteLine("Volume setting:");
+			Console.WriteLine("\n1-Low \n2-Medium \n3-High");
+			int intVolume = Convert.ToInt32(Console.ReadLine());
+			Console.WriteLine("What is the current volume: ");
+			currentVolume = Volume.Low;
+			switch (currentVolume)
+			{
+				case Volume.Low:
+					Console.WriteLine("The volume has been turned down"); break;
+				case Volume.Medium:
+					Console.WriteLine("The volume has been turned down"); break;
+				case Volume.High:
+					Console.WriteLine("The volume has been turned down"); break;
+
+		}
+		Console.ReadKey();
+
+		}*/
+		enum Volume 
+	{
+		Low,
+		Medium,
+		High
+	};
+		static void Main(string[] args) 
+		{
+			Console.WriteLine("\n Volume Enum members by Name: ");
+			foreach (string Volume in Enum.GetNames(typeof(Volume)))
+			{
+				Console.WriteLine("Volume Member: {0}\n Value: {1}",
+				Volume, (byte)Enum.Parse(typeof(Volume), Volume));
+			}
+			Console.ReadKey();
+		}
+	}
+}

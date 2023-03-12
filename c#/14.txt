@@ -1,0 +1,131 @@
+<Window x:Class="SrsGraphicSolarSystemN.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SrsGraphicSolarSystemN"
+        mc:Ignorable="d"
+        Title="Solar System" Height="450" Width="800">
+    <Border BorderBrush= "Gray" BorderThickness="1" Margin="5">
+        <Canvas Margin="1,1,-1,-1">
+            <Path Stroke= "LightBlue" RenderTransformOrigin="0.571,0.589" Canvas.Left="129.331" Canvas.Top="90.832">
+                <Path.Data>
+                    <PathGeometry x:Name="road1"
+ Figures="M 0,100 A 100,80 0 1 1 200,200 A 100,80 0 1 1 0,100"/>
+                </Path.Data>
+            </Path>
+
+            <Path Stroke= "LightBlue" RenderTransformOrigin="0.571,0.589" Canvas.Left="74.862" Canvas.Top="16.164">
+                <Path.Data>
+                    <PathGeometry x:Name="road2"
+ Figures="M 0,150 A 150 ,120 0 1 1 300,300 A 150,120 0 1 1 0,150"/>
+                </Path.Data>
+            </Path>
+            <Path Stroke= "LightBlue" Canvas.Left="129.331" Canvas.Top="90.832" RenderTransformOrigin="0.523,0.532">
+                <Path.Fill>
+                    <RadialGradientBrush>
+                        <GradientStop Color= "green" Offset="0"/>
+                        <GradientStop Color= "Blue" Offset="1"/>
+                    </RadialGradientBrush>
+                </Path.Fill>
+                <Path.Data>
+                    <EllipseGeometry x:Name="Planet" Center="50,120" RadiusX="20" RadiusY="20"/>
+                </Path.Data>
+            </Path>
+            <Path Stroke="Yellow" Canvas.Left="-21.983" Canvas.Top="-13.147">
+                <Path.Fill>
+                    <RadialGradientBrush>
+                        <GradientStop Color= "Gold" Offset="0"/>
+                        <GradientStop Color= "DarkGoldenrod" Offset="1"/>
+                    </RadialGradientBrush>
+                </Path.Fill>
+                <Path.Data>
+                    <EllipseGeometry x:Name="TheSun" Center="250,250" RadiusX="30" RadiusY="30"/>
+                </Path.Data>
+
+            </Path>
+
+            <Path Stroke= "DarkGray" Canvas.Left="82.195" RenderTransformOrigin="0.523,0.532" Canvas.Top="16.164">
+                <Path.Fill>
+                    <RadialGradientBrush>
+                        <GradientStop Color= "DarkRed" Offset="0"/>
+                        <GradientStop Color= "Brown" Offset="1"/>
+                    </RadialGradientBrush>
+                </Path.Fill>
+                <Path.Data>
+                    <EllipseGeometry x:Name="Planet1" Center="20,120" RadiusX="10" RadiusY="10"/>
+                </Path.Data>
+
+            </Path>
+            <Path Stroke= "LightGray" StrokeThickness="3" Canvas.Left="82.195" RenderTransformOrigin="0.523,0.532" Canvas.Top="16.163" >
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="1"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Path.RenderTransform>
+
+
+                <Path.Data>
+
+                    <EllipseGeometry x:Name="circle" Center="20,120" RadiusX="20" RadiusY="7" />
+
+                </Path.Data>
+
+            </Path>
+
+        </Canvas>
+    </Border>
+</Window>
+
+
+...........
+
+using System;
+using System.Windows;
+using System.Windows.Media.Animation;
+using System.Windows.Controls;
+using System.Windows.Media;
+
+namespace SrsGraphicSolarSystemN
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+            StartAnimation();
+        }
+        private void StartAnimation()
+        {
+            // Path1 animation:
+            road1.Freeze(); // For performance benefits.
+            PointAnimationUsingPath pa = new PointAnimationUsingPath();
+            pa.PathGeometry = road1;
+            pa.Duration = TimeSpan.FromSeconds(5);
+            pa.RepeatBehavior = RepeatBehavior.Forever;
+            Planet.BeginAnimation(EllipseGeometry.CenterProperty, pa);
+
+
+
+            road2.Freeze(); // For performance benefits.
+            PointAnimationUsingPath pa2 = new PointAnimationUsingPath();
+            pa2.PathGeometry = road2;
+            pa2.Duration = TimeSpan.FromSeconds(8);
+            pa2.RepeatBehavior = RepeatBehavior.Forever;
+            Planet1.BeginAnimation(EllipseGeometry.CenterProperty, pa2);
+
+            road2.Freeze(); // For performance benefits.
+            PointAnimationUsingPath pa3 = new PointAnimationUsingPath();
+            pa3.PathGeometry = road2;
+            pa3.Duration = TimeSpan.FromSeconds(8);
+            pa3.RepeatBehavior = RepeatBehavior.Forever;
+            circle.BeginAnimation(EllipseGeometry.CenterProperty, pa2);
+        }
+    }
+}

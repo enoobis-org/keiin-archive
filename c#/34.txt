@@ -1,0 +1,148 @@
+ProgramOfRectangle.cs
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WorkWithInheritanceN07._02._22
+{
+    class ProgramOfRectangle : Rectangle
+    {
+        private double cost;
+        public ProgramOfRectangle(double h, double w) : base(h, w) { }
+        public double GetCost()
+        {
+            double cost;
+            cost = GetArea() * 70;
+            return cost;
+        }
+        public void Display()
+        {
+            base.Display();
+            Console.WriteLine("Cost: {0}", GetCost());
+        }
+        public double getArea()
+        {
+            return (width * height);
+        }
+    }
+}
+
+------------------------------------------------------------------------------------------------------------------------------
+Rectangle.cs
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WorkWithInheritanceN07._02._22
+{
+    class Rectangle
+    {
+        protected double height;
+        protected double width;
+        public Rectangle(double paramHeight, double paramWidth)
+        {
+            height = paramHeight;
+            width = paramWidth;
+        }
+        public double GetArea()
+        {
+            return width * height;
+        }
+        public void Display()
+        {
+            Console.WriteLine("Height: {0}", height);
+            Console.WriteLine("Width: {0}", width);
+            Console.WriteLine("Area: {0}", GetArea());
+        }
+    }
+}
+
+------------------------------------------------------------------------------------------------------------------------------
+Program.cs
+
+
+using System;
+
+namespace WorkWithInheritanceN07._02._22
+{/* This class is base class */
+
+    /*class Rectangle1 : Shape
+    {
+        public double getArea()
+        {
+            return (width * height);
+        }
+    }
+    class Triangle : Shape
+    {
+        public double getArea()
+        {
+            return (width * height);
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+
+        Rectangle1 rec1 = new Rectangle1();
+        double recHeight;
+        double recWidth;
+        Console.Write("Enter the rectangle height:");
+        double.TryParse(Console.ReadLine(), out recHeight);
+        rec1.SetHeight(recHeight);
+            Console.Write("Enter the rectangle width:");
+        recWidth = double.Parse(Console.ReadLine());
+        rec1.SetWidth(recWidth);
+Console.WriteLine("\nrec1 height = {0}", rec1.GetHeight());
+        Console.WriteLine("\nrec1 width = {0}", rec1.GetWidth());
+        Console.ReadKey();
+        }
+    }*/
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ProgramOfRectangle t = new ProgramOfRectangle(4.5, 7.5);
+            t.Display();
+            Console.ReadKey();
+        }
+    }
+}
+
+------------------------------------------------------------------------------------------------------------------------------
+Shape.cs
+
+
+class Shape
+{
+    protected double width;
+    protected double height;
+    public void SetWidth(double widthParametr)
+    {
+        width = widthParametr;
+    }
+    public double GetWidth()
+    {
+        return width;
+    }
+    public void SetHeight(double heightParametr)
+    {
+        height = heightParametr;
+    }
+    public double GetHeight()
+    {
+        return height;
+    }
+}

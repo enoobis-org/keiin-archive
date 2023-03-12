@@ -1,0 +1,123 @@
+<Window x:Class="Definding_KeysNamesN13._12._21.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Definding_KeysNamesN13._12._21"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        KeyDown="pressedAnyKey" >
+    <StackPanel>
+        <TextBlock Text="Pressed key is:" Margin="10"/>
+        <TextBlock Text="" x:Name="aTextBlock"/>
+        <TextBlock Text="" x:Name="xPositionTB"/>
+        <TextBlock Text="" x:Name="yPositionTB"/>
+        <TextBlock Text="Pressed key in keyboard is:" Margin="10"/>
+        <TextBlock Text="" x:Name="bTextBlock"/>
+        <TextBlock Text="" x:Name="wPositionTB"/>
+        <TextBlock Text="" x:Name="sPositionTB"/>
+    </StackPanel>
+</Window>
+
+
+
+..............
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace Definding_KeysNamesN13._12._21
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        int xPosition = 0;
+        int yPosition = 0;
+        int x1Position = 0;
+        int y1Position = 0;
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void pressedAnyKey(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.Enter)) 
+            {
+                aTextBlock.Text = "<Enter> is pressed";
+
+            }
+            else if (Keyboard.IsKeyDown(Key.Down)) 
+            {
+                xPosition++;
+                aTextBlock.Text = "<DownArrow> is pressed";
+                xPositionTB.Text = xPosition.ToString();
+            }
+            else if (Keyboard.IsKeyDown(Key.Up))
+            {
+                xPosition--;
+                aTextBlock.Text = "<UpArrow> is pressed";
+                xPositionTB.Text = xPosition.ToString();
+            }
+            else if (Keyboard.IsKeyDown(Key.Right))
+            {
+                yPosition++;
+                aTextBlock.Text = "<RightArrow> is pressed";
+                yPositionTB.Text = yPosition.ToString();
+            }
+            else if (Keyboard.IsKeyDown(Key.Left))
+            {
+                yPosition--;
+                aTextBlock.Text = "<LeftArrow> is pressed";
+                yPositionTB.Text = yPosition.ToString();
+            }
+            if (Keyboard.IsKeyDown(Key.Enter))
+            {
+                bTextBlock.Text = "<Enter> is pressed";
+
+            }
+            else if (Keyboard.IsKeyDown(Key.S))
+            {
+                y1Position++;
+                bTextBlock.Text = "<SArrow> is pressed";
+                wPositionTB.Text = y1Position.ToString();
+            }
+            else if (Keyboard.IsKeyDown(Key.W))
+            {
+                y1Position--;
+                bTextBlock.Text = "<WArrow> is pressed";
+                wPositionTB.Text = y1Position.ToString();
+            }
+            else if (Keyboard.IsKeyDown(Key.D))
+            {
+                x1Position++;
+                bTextBlock.Text = "<DArrow> is pressed";
+                sPositionTB.Text = x1Position.ToString();
+            }
+            else if (Keyboard.IsKeyDown(Key.A))
+            {
+                x1Position--;
+                bTextBlock.Text = "<AArrow> is pressed";
+                sPositionTB.Text = x1Position.ToString();
+            }
+        }
+
+       
+    }
+}

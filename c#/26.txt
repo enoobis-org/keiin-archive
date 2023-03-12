@@ -1,0 +1,235 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace StudentsTable
+{
+    /// <summary>
+    /// Логика взаимодействия для MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void button_AddStudent(object sender, RoutedEventArgs e)
+        {
+            ListStudent.Items.Add(StudentName.Text);
+        }
+
+        private void button_RemoveStudent(object sender, RoutedEventArgs e)
+        {
+            ListStudent.Items.RemoveAt
+
+       (ListStudent.Items.IndexOf(ListStudent.SelectedItem));
+        }
+
+        private void button_AddTest1(object sender, RoutedEventArgs e)
+        {
+            ListTest1.Items.Add(Test1text.Text);
+        }
+
+        private void button_AddTest2(object sender, RoutedEventArgs e)
+        {
+            ListTest2.Items.Add(Test2text.Text);
+        }
+
+        private void button_AddTest3(object sender, RoutedEventArgs e)
+        {
+            ListTest3.Items.Add(Test3text.Text);
+        }
+
+        private void button_AddTest4(object sender, RoutedEventArgs e)
+        {
+            ListTest4.Items.Add(Test4text.Text);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+           
+
+
+
+            number.Text = ListStudent.Items.Count.ToString();
+
+            string text = "";
+            foreach (var item in ListStudent.Items)
+            {
+                text += item.ToString() + "                " ; 
+            }
+            Names.Text = text;
+
+            string textTest1 = "";
+            foreach (var item in ListTest1.Items)
+            {
+                textTest1 += item.ToString() + "                ";
+            }
+            Test1t.Text = textTest1;
+
+            string textTest2 = "";
+            foreach (var item in ListTest2.Items)
+            {
+                textTest2 += item.ToString() + "";
+            }
+            Test2t.Text = textTest2;
+
+            string textTest3 = "";
+            foreach (var item in ListTest3.Items)
+            {
+                textTest3 += item.ToString() + "";
+            }
+            Test3t.Text = textTest3;
+
+            string textTest4 = "";
+            foreach (var item in ListTest4.Items)
+            {
+                textTest4 += item.ToString() + "";
+            }
+            Test4t.Text = textTest4;
+
+            int a = Convert.ToInt32(Test1t.Text);
+            int b = Convert.ToInt32(Test2t.Text);
+            int c = Convert.ToInt32(Test3t.Text);
+            int d = Convert.ToInt32(Test4t.Text);
+            int esum = a + b + c + d;
+            sum.Text = esum.ToString();
+
+           int min = a;
+           int max = a;
+
+            if (b < min)
+                min = b;
+            if (b > max)
+                max = b;
+            if (c < min)
+                min = c;
+            if (c > max)
+                max = c;
+            if (d < min)
+                min = d;
+            if (d > max)
+                max = d;
+
+
+            minmax.Text = min.ToString();
+            minmax.Visibility = Visibility.Visible;
+            minmax_Copy.Text = max.ToString();
+            minmax_Copy.Visibility = Visibility.Visible;
+
+        }
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+    }
+}
+
+-----------------------------------------------------------------------------------------------------
+
+
+<Window x:Class="StudentsTable.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentsTable"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" WindowStyle="None" Width="800">
+    <Grid Margin="0,-1,0,-61">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="713*"/>
+            <RowDefinition Height="79*"/>
+        </Grid.RowDefinitions>
+        <Rectangle Fill="#FFF4F4F5"  HorizontalAlignment="Left" Height="2" Margin="-4,112,0,0" Stroke="Black" VerticalAlignment="Top" Width="796" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="2" Margin="-2,63,-2,0" Stroke="Black" VerticalAlignment="Top" Width="796" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="2" Margin="-2,366,-2,0" Stroke="Black" VerticalAlignment="Top" Width="796" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Label Content="Students" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top"  Height="50" Width="150" FontSize="36" FontFamily="Consolas"/>
+        <Label Content="Test1" HorizontalAlignment="Left" Margin="270,71,0,0" VerticalAlignment="Top"  Height="50" Width="84" FontSize="28" FontFamily="Consolas"/>
+        <Label Content="Test2" HorizontalAlignment="Left" Margin="398,71,0,0" VerticalAlignment="Top"  Height="50" Width="90" FontSize="28" FontFamily="Consolas"/>
+        <Label Content="Test3" HorizontalAlignment="Left" Margin="537,71,0,0" VerticalAlignment="Top"  Height="50" Width="91" FontSize="28" FontFamily="Consolas"/>
+        <Label Content="Test4" HorizontalAlignment="Left" Margin="673,71,0,0" VerticalAlignment="Top"  Height="50" Width="93" FontSize="28" FontFamily="Consolas"/>
+        <Button Content="OK" HorizontalAlignment="Left" Margin="665,520,0,0" VerticalAlignment="Top" Width="101" Height="44" Background="White" BorderBrush="Black" Click="Button_Click"/>
+        <Button x:Name="AddStudent" Click="button_AddStudent" Content="ADD" HorizontalAlignment="Left" Margin="10,405,0,0" VerticalAlignment="Top" Width="75" Height="44" Background="White"/>
+        <Button Click="button_RemoveStudent" Content="REMOVE" HorizontalAlignment="Left" Margin="106,405,0,0" VerticalAlignment="Top" Width="74" Height="44" Background="White"/>
+        <ListBox BorderBrush="White" x:Name="ListStudent" HorizontalAlignment="Left" Height="217" Margin="10,134,0,0" VerticalAlignment="Top" Width="170"/>
+        <ListBox BorderBrush="White" x:Name="ListTest1"  HorizontalAlignment="Left" Height="217" Margin="270,134,0,0" VerticalAlignment="Top" Width="84"/>
+        <ListBox BorderBrush="White" x:Name="ListTest2"  HorizontalAlignment="Left" Height="217" Margin="404,134,0,0" VerticalAlignment="Top" Width="84"/>
+        <ListBox BorderBrush="White" x:Name="ListTest3"  HorizontalAlignment="Left" Height="217" Margin="537,134,0,0" VerticalAlignment="Top" Width="84"/>
+        <ListBox BorderBrush="White"  x:Name="ListTest4"  HorizontalAlignment="Left" Height="217" Margin="673,134,0,0" VerticalAlignment="Top" Width="84"/>
+        <Button Click="button_AddTest1" Content="ADD" HorizontalAlignment="Left" Margin="270,405,0,0" VerticalAlignment="Top" Width="84" Height="44" Background="White"/>
+        <Button Click="button_AddTest2" Content="ADD" HorizontalAlignment="Left" Margin="404,405,0,0" VerticalAlignment="Top" Width="84" Height="44" Background="White"/>
+        <Button Click="button_AddTest3" Content="ADD" HorizontalAlignment="Left" Margin="537,405,0,0" VerticalAlignment="Top" Width="84" Height="44" Background="White"/>
+        <Button Click="button_AddTest4" Content="ADD" HorizontalAlignment="Left" Margin="673,405,0,0" VerticalAlignment="Top" Width="84" Height="44" Background="White"/>
+        <TextBox x:Name="StudentName" HorizontalAlignment="Left" Height="22" Margin="10,378,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="170"/>
+        <TextBox x:Name="Test1text"  HorizontalAlignment="Left" Height="22" Margin="270,378,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84"/>
+        <TextBox x:Name="Test2text" HorizontalAlignment="Left" Height="22" Margin="404,378,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84"/>
+        <TextBox x:Name="Test3text" HorizontalAlignment="Left" Height="22" Margin="537,378,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84"/>
+        <TextBox x:Name="Test4text" HorizontalAlignment="Left" Height="22" Margin="673,378,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84"/>
+        <TextBox BorderBrush="White" x:Name="number" HorizontalAlignment="Left" Height="23" Margin="10,508,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="344"/>
+        <TextBox BorderBrush="White"  x:Name="Names" HorizontalAlignment="Left" Height="128" Margin="10,536,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84"/>
+        <TextBox BorderBrush="White" x:Name="Test1t" HorizontalAlignment="Left" Height="128" Margin="99,536,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="37"/>
+        <Label Content="Students" HorizontalAlignment="Left" Margin="10,477,0,0" VerticalAlignment="Top" Width="84"/>
+        <Button Content="Clean" HorizontalAlignment="Left" Margin="665,569,0,0" VerticalAlignment="Top" Width="101" RenderTransformOrigin="0.067,0.4" Height="45" Background="White" BorderBrush="Black"/>
+        <Button Content="Close" HorizontalAlignment="Left" Margin="665,619,0,0" VerticalAlignment="Top" Width="101" Height="50" Background="White" BorderBrush="Black" Click="Button_Click_1"/>
+        <TextBox BorderBrush="White" x:Name="Test2t" HorizontalAlignment="Left" Height="128" Margin="141,536,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="39"/>
+        <TextBox BorderBrush="White" x:Name="Test3t" HorizontalAlignment="Left" Height="128" Margin="185,536,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="38"/>
+        <TextBox BorderBrush="White" x:Name="Test4t" HorizontalAlignment="Left" Height="128" Margin="228,536,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="38"/>
+        <TextBox BorderBrush="White" x:Name="sum" HorizontalAlignment="Left" Height="128" Margin="270,536,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84"/>
+        <TextBox x:Name="minmax" HorizontalAlignment="Left" BorderBrush="White" Height="128" Margin="359,536,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="116"/>
+        <TextBox x:Name="minmax_Copy" HorizontalAlignment="Left" BorderBrush="White" Height="128" Margin="480,536,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="116"/>
+        <Label Content="min" HorizontalAlignment="Left" Margin="404,508,0,0" VerticalAlignment="Top"/>
+        <Label Content="max" HorizontalAlignment="Left" Margin="528,508,0,0" VerticalAlignment="Top"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="10,507,0,0" Stroke="Black" VerticalAlignment="Top" Width="586"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="257" Margin="205,111,0,0" Stroke="Black" VerticalAlignment="Top" Width="1"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="171" Margin="337,508,0,0" Stroke="Black" VerticalAlignment="Top" Width="1" RenderTransformOrigin="0.5,0.5"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="10,477,0,0" Stroke="Black" VerticalAlignment="Top" Width="586"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="9,669,0,0" Stroke="Black" VerticalAlignment="Top" Width="586"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="199" Margin="594,478,0,0" Stroke="Black" VerticalAlignment="Top" Width="1" RenderTransformOrigin="0.5,0.5"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="201" Margin="10,478,0,0" Stroke="Black" VerticalAlignment="Top" Width="1" RenderTransformOrigin="0.5,0.5"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="257" Margin="379,111,0,0" Stroke="Black" VerticalAlignment="Top" Width="1"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="257" Margin="239,111,0,0" Stroke="Black" VerticalAlignment="Top" Width="1"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="257" Margin="518,111,0,0" Stroke="Black" VerticalAlignment="Top" Width="1"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="257" Margin="653,111,0,0" Stroke="Black" VerticalAlignment="Top" Width="1"/>
+    </Grid>
+</Window>

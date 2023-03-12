@@ -1,0 +1,186 @@
+<Window x:Class="Jakshylyk_CPC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Jakshylyk_CPC"
+        mc:Ignorable="d"
+        Title="Payroll Tax Rates 2021" Height="600" Width="900">
+    <Grid x:Name="MainRoot" Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock HorizontalAlignment="Left" Margin="61,0,0,0" 
+                   TextWrapping="Wrap" Text="Survivors Insurance (7%)" VerticalAlignment="Center" FontSize="20" FontFamily="Calibri" FontWeight="Normal"/>
+        <TextBlock HorizontalAlignment="Left" Margin="61,0,0,0" 
+            TextWrapping="Wrap" Text="Disability Insurance (1,8% pd)" VerticalAlignment="Center" FontSize="20" FontFamily="Calibri" FontWeight="Normal" Grid.Row="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="61,0,0,0" 
+            TextWrapping="Wrap" Text="Hospital Insurance (2,9 % pd)" VerticalAlignment="Center" FontSize="20" FontFamily="Calibri" FontWeight="Normal" Grid.Row="2"/>
+        <TextBlock x:Name="survivors1" Background="LightBlue" HorizontalAlignment="Center" 
+            TextWrapping="Wrap" VerticalAlignment="Center" 
+                   FontSize="20" FontFamily="Calibri" FontWeight="Normal" Grid.Column="1"
+                   Width="200"/>
+        <TextBlock x:Name="disability1" Background="LightBlue" HorizontalAlignment="Center" 
+            TextWrapping="Wrap" VerticalAlignment="Center" 
+            FontSize="20" FontFamily="Calibri" FontWeight="Normal" Grid.Column="1"
+            Width="200" Grid.Row="1"/>
+        <TextBlock x:Name="hospital1" Background="LightBlue" HorizontalAlignment="Center" 
+            TextWrapping="Wrap" VerticalAlignment="Center" 
+            FontSize="20" FontFamily="Calibri" FontWeight="Normal" Grid.Column="1"
+            Width="200" Grid.Row="2"/>
+        <Button Content="Calculate" FontSize="20" FontFamily="Calibri"
+                Grid.Row="8" Grid.Column="0" Width="150" Height="50" Click="Button_Click"/>
+        <TextBlock HorizontalAlignment="Center" 
+            TextWrapping="Wrap" Text="Employees Data" VerticalAlignment="Center" FontSize="25" FontFamily="Calibri" FontWeight="Normal" Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Height="45" Width="200" FontFamily="Calibri" FontSize="30"/>
+        <TextBlock HorizontalAlignment="Center" 
+            TextWrapping="Wrap" Text="First Name" VerticalAlignment="Center" FontSize="20" FontFamily="Calibri" FontWeight="Normal" Grid.Row="4"/>
+        <TextBlock HorizontalAlignment="Center" 
+            TextWrapping="Wrap" Text="Last Name" VerticalAlignment="Center" FontSize="20" FontFamily="Calibri" FontWeight="Normal" Grid.Row="4" Grid.Column="2"/>
+        <TextBox Grid.Row="4" Grid.Column="3" Height="45" Width="200" FontFamily="Calibri" FontSize="30" Margin="13,9,12,10"/>
+        <TextBlock HorizontalAlignment="Center" 
+            TextWrapping="Wrap" Text="Wage" VerticalAlignment="Center" FontSize="20" FontFamily="Calibri" FontWeight="Normal" Grid.Row="5"/>
+        <TextBlock HorizontalAlignment="Left" 
+            TextWrapping="Wrap" Text="Money stopped" VerticalAlignment="Center" FontSize="20" FontFamily="Calibri" FontWeight="Normal" Grid.Row="7" Grid.Column="2" Margin="50,0,0,0"/>
+        <TextBlock HorizontalAlignment="Center" 
+            TextWrapping="Wrap" Text="Working days" VerticalAlignment="Center" FontSize="20" FontFamily="Calibri" FontWeight="Normal" Grid.Row="6"/>
+        <TextBlock HorizontalAlignment="Left" 
+            TextWrapping="Wrap" Text="Off days" VerticalAlignment="Center" FontSize="20" FontFamily="Calibri" FontWeight="Normal" Grid.Row="5" Grid.Column="2" Margin="81,0,0,0"/>
+        <TextBlock HorizontalAlignment="Center" 
+            TextWrapping="Wrap" Text="Salary for month" VerticalAlignment="Center" FontSize="20" FontFamily="Calibri" FontWeight="Normal" Grid.Row="7"/>
+        <TextBlock HorizontalAlignment="Center" 
+            TextWrapping="Wrap" Text="Hospital list" VerticalAlignment="Center" FontSize="20" FontFamily="Calibri" FontWeight="Normal" Grid.Row="6" Grid.Column="2"/>
+        <TextBlock x:Name="moneyStopped1" Background="LightBlue" HorizontalAlignment="Center" 
+            TextWrapping="Wrap" VerticalAlignment="Center" 
+            FontSize="20" FontFamily="Calibri" FontWeight="Normal" Grid.Column="3"
+            Width="200" Grid.Row="7"/>
+        <TextBlock x:Name="salaryForM" Background="LightBlue" HorizontalAlignment="Left" 
+            TextWrapping="Wrap" VerticalAlignment="Center" 
+            FontSize="20" FontFamily="Calibri" FontWeight="Normal" Grid.Column="1"
+            Width="200" Grid.Row="7" Margin="10,0,0,0"/>
+        <TextBox x:Name="nameOfWage" Grid.Row="5" Grid.Column="1" Height="45" Width="200" FontFamily="Calibri" FontSize="30" Margin="10,10,15,10" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="nameOfWorkingD" Grid.Row="6" Grid.Column="1" Height="45" Width="200" FontFamily="Calibri" FontSize="30" Margin="13,10,12,10" TextChanged="TextBox_TextChanged"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,20,0,0" 
+            TextWrapping="Wrap" Text="Salary per day" VerticalAlignment="Top" FontSize="20" FontFamily="Calibri" FontWeight="Normal" Grid.Column="2" Grid.RowSpan="2"/>
+        <TextBlock x:Name="salaryPerD" Background="LightBlue" HorizontalAlignment="Center" 
+            TextWrapping="Wrap" VerticalAlignment="Center" 
+            FontSize="20" FontFamily="Calibri" FontWeight="Normal" Grid.Column="3"
+            Width="200"/>
+        <TextBox x:Name="offDays" Grid.Row="5" Grid.Column="3" Height="45" Width="200" FontFamily="Calibri" FontSize="30" Margin="15,10,10,10" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="hospitalL" Grid.Row="6" Grid.Column="3" Height="45" Width="200" FontFamily="Calibri" FontSize="30" Margin="15,10,10,10" TextChanged="TextBox_TextChanged"/>
+        <Button Content="Clear" FontSize="20" FontFamily="Calibri"
+            Grid.Row="8" Grid.Column="1" Width="150" Height="50" Click="Button_Click1" Margin="40,6,33,7"/>
+
+    </Grid>
+</Window>
+
+................
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace Jakshylyk_CPC
+{
+    /// <summary>
+    /// Ëîãèêà âçàèìîäåéñòâèÿ äëÿ MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+        
+     public int FirstMethod(int x)
+        {
+            int nameOfWage2 = x;
+        return (nameOfWage2 / 100) * 7;           
+
+        }
+
+        double haveList1;
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+           
+            survivors1.Text = Convert.ToString(FirstMethod(int.Parse(nameOfWage.Text)));
+            int a = int.Parse(nameOfWage.Text);
+            int b = int.Parse(nameOfWorkingD.Text);
+            int workingD2 = a / b;
+            salaryPerD.Text = Convert.ToString(workingD2);
+
+            double nameOfOffDays = Convert.ToDouble(offDays.Text);
+            double percentOfOffDays = (workingD2 / 100) * 1.8;
+            double resultOfOffDays = percentOfOffDays * nameOfOffDays;
+            disability1.Text = Convert.ToString(resultOfOffDays);
+
+
+            
+            char nameOfHospitalL = Convert.ToChar(hospitalL.Text);
+            switch (nameOfHospitalL)
+            {
+                case '+':
+                    double percentOfList = (workingD2 / 100) * 2.9;
+                    haveList1 = percentOfList * nameOfOffDays;
+                    hospital1.Text = Convert.ToString(haveList1);
+                    break;
+                case '-':
+                    hospital1.Text = Convert.ToString(0);
+                    break;
+                default:
+                    break;
+            }
+
+            
+
+            double retention1 = numb + resultOfOffDays + haveList1;
+            moneyStopped1.Text = Convert.ToString(retention1);
+
+            double result = nameOfWage2 - retention1;
+            salaryForM.Text = Convert.ToString(result);
+
+  
+        }
+
+        private void Button_Click1(object sender, RoutedEventArgs e)
+        {
+            salaryForM.Text = "";
+            moneyStopped1.Text = "";
+            hospital1.Text = "";
+            disability1.Text = "";
+            salaryPerD.Text = "";
+            survivors1.Text = "";
+
+        }
+    }
+}

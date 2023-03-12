@@ -1,0 +1,154 @@
+<Window x:Class="Midterm_assignment__Mamytov_Nurbai_14._03._22_.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Midterm_assignment__Mamytov_Nurbai_14._03._22_"
+        mc:Ignorable="d"
+        Title="Midterm assignment (ITc-20_Mamytov Nurbai_14.03.22)" Height="390" Width="750">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="2" BorderBrush="Gray" CornerRadius="10" Background="LightSalmon">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="Green"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <StackPanel Margin="5 0">
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="Last name:" Background="LightSkyBlue" Margin="0 0 5 0" FontFamily="Bookman Old Style"/>
+                <TextBox x:Name="LName" Width="70" Height="20" Margin="1 3 0 0" BorderThickness="2"/>
+                <Label Content=" First name:" Background="LightSkyBlue" Margin="10 0 0 0" FontFamily="Bookman Old Style"/>
+                <TextBox x:Name="FName" Width="70" Height="20" Margin="7 3 0 0" BorderThickness="2"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <ListBox x:Name="ListOfElements" Width="130" Height="230" HorizontalAlignment="Left" Margin="15"/>
+                <ListBox x:Name="ListOfElements2" Width="130" Height="230" Margin="40 0 0 0"/>
+                <ListBox x:Name="ListOfElementsMin" Width="130" Height="230" Margin="60 0 0 0"/>
+                <ListBox x:Name="ListOfElementsInSort" Width="130" Height="230" Margin="60 0 0 0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="683">
+                <Button Content="Fill Box" Margin="45 0 15 0" Click="showElements"/>
+                <Button Content="Fill 2 Box" Margin="99 0 15 0" Click="showElements2"/>
+                <Button Content="Multiply" Margin="108 0 0 0" Click="multiply_2_Elements"/>
+                <Button Content="InSort" Margin="120 0 0 0" Click="fillInSortList"/>
+            </StackPanel>
+            <Button Content="Clear" Margin="0 5 0 0" Click="Clear"/>
+        </StackPanel>
+    </Grid>
+</Window>
+
+
+.................................................
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace Midterm_assignment__Mamytov_Nurbai_14._03._22_
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        public int[] studentsArray; public int[] studentsArray2; public int[] studentsArray3;
+        public int MinEl;
+       
+        private void showElements(object sender, RoutedEventArgs e)
+        {
+            string arrayname = LName.Text;
+            studentsArray = new int[Convert.ToInt32(arrayname.Length)];
+            Random number = new Random();
+            for (int i = 0; i < studentsArray.Length; i++)
+                studentsArray[i] = number.Next(0, 30);
+            foreach (int item in studentsArray)
+                ListOfElements.Items.Add(item);
+        }
+     
+        private void showElements2(object sender, RoutedEventArgs e)
+        {
+            string arrayname2 = FName.Text;
+            studentsArray2 = new int[Convert.ToInt32(arrayname2.Length)];
+            Random number2 = new Random();
+            for (int i = 0; i < studentsArray2.Length; i++)
+                studentsArray2[i] = number2.Next(0, 30);
+            foreach (int item in studentsArray2)
+             ListOfElements2.Items.Add(item);
+
+            MinEl = studentsArray2[0];
+            for (int i = 0; i < studentsArray2.Length; i++)
+                if (studentsArray2[i] < MinEl)          
+                    MinEl = studentsArray2[i];
+        }
+
+        private void multiply_2_Elements(object sender, RoutedEventArgs e)
+        {
+            ListOfElementsMin.Items.Clear();
+           foreach(int item in studentsArray)
+            {   
+              ListOfElementsMin.Items.Add(item * MinEl);
+            }
+        }
+      
+        public void InsertionSort()
+        {
+            for (int nexT = 1; nexT < studentsArray.Length; nexT++)
+            {
+                int insert = studentsArray[nexT];
+                int moveItem = nexT;
+                while (moveItem > 0 && studentsArray[moveItem - 1] > insert)
+                {
+                    studentsArray[moveItem] = studentsArray[moveItem - 1];
+                    moveItem--;
+                }
+                studentsArray[moveItem] = insert;
+            }
+
+        }
+
+        private void fillInSortList(object sender, RoutedEventArgs e)
+        {
+            ListOfElementsInSort.Items.Clear();
+            InsertionSort();
+            foreach (var item in studentsArray)
+                ListOfElementsInSort.Items.Add(item);
+        }
+
+        private void Clear(object sender, RoutedEventArgs e)
+        {
+            ListOfElements.Items.Clear();
+            ListOfElements2.Items.Clear();
+            ListOfElementsMin.Items.Clear();
+            ListOfElementsInSort.Items.Clear();
+        }
+    }
+}

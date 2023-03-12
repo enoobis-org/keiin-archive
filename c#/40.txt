@@ -1,0 +1,41 @@
+using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WorkingWithFileClassMN_28._02._22
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            /*Check the file exists or not*/
+            string FileName = @"C:\Users\412-16\source\repos\content2.txt";
+            FileInfo fileInfoVar = new FileInfo(FileName);
+            // opet this file to read or write
+            FileStream fileStreamVar = fileInfoVar.Open(FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
+            // Create an array with the same size as the file
+            string [] someArray = new string[fileStreamVar.Length];
+            // create an array of byte type, because all the data in a file
+            // would be in 0s and 1s
+            byte[] byteArray = new byte[fileStreamVar.Length];
+            // how many bytes in byteArray object
+            int countBytes = (int) byteArray.Length;
+            int readBytes = 0;
+            // loops for reading all the bytes in a file 
+            while (countBytes > 0)
+            {
+                int n = fileStreamVar.Read(byteArray, readBytes, countBytes);
+                if (n == 0) break;
+                readBytes += n;
+                countBytes -= n;
+            }
+          
+            
+            Console.ReadLine();
+        }
+
+    }
+}

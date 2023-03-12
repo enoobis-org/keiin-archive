@@ -1,0 +1,69 @@
+<Window x:Class="_Animations_Project29._11._21N.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_Animations_Project29._11._21N"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Canvas>
+        <Rectangle x:Name="aRect" Width="100" Height="100" Fill="Blue">
+            <Rectangle.Triggers>
+                <EventTrigger RoutedEvent="Rectangle.Loaded">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <!--<DoubleAnimation Storyboard.TargetName="aRect"
+                                                 Storyboard.TargetProperty="Height"
+                                                 From="450" To="800"
+                                                 RepeatBehavior="Forever"
+                                                 AutoReverse="True"/> -->
+                                <DoubleAnimation Storyboard.TargetName="aRect"
+                                                 Storyboard.TargetProperty="(Canvas.Top)"
+                                                 From="5" To="350" Duration="0:0:5"
+                                                 RepeatBehavior="Forever"
+                                                 AutoReverse="True"/>
+                                <DoubleAnimation Storyboard.TargetName="aRect"
+                                                 Storyboard.TargetProperty="(Canvas.Left)"
+                                                 From="5" To="350" 
+                                                 RepeatBehavior="Forever"
+                                                 AutoReverse="True"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Rectangle.Triggers>
+        </Rectangle>
+    </Canvas>
+</Window>
+
+................
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace _Animations_Project29._11._21N
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+    }
+}

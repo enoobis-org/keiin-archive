@@ -1,0 +1,165 @@
+<Window x:Class="AllTheSortingWaysMN_07._03._22.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AllTheSortingWaysMN_07._03._22"
+        mc:Ignorable="d"
+        Title="The sorting way" Height="490" Width="840">
+    <Window.Resources>
+        <Style TargetType="ListBox">
+            <Setter Property="Width" Value="250"/>
+        </Style>
+<Window x:Class="AllTheSortingWaysMN_07._03._22.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AllTheSortingWaysMN_07._03._22"
+        mc:Ignorable="d"
+        Title="The sorting way" Height="490" Width="840">
+    <Window.Resources>
+        <Style TargetType="ListBox">
+            <Setter Property="Width" Value="250"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="320"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+        <Border BorderBrush="Gray" BorderThickness="1" Margin="3" Grid.Column="0">
+            <StackPanel HorizontalAlignment="Left" Margin="5 0" >
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Number of students:"/>
+                    <TextBox x:Name="NumberOFStudentsTB" Width="100" Height="20" KeyDown="InitializingArrayTB" Margin="0 3 0 0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Enter the first name:"/>
+                    <TextBox x:Name="NameOfStudent" Width="100" Height="20" Margin="0 3 0 0" KeyDown="addFirstNameToListBox"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="The list of students:"/>
+                    <ListBox x:Name="ListOfStudentsLB" Height="305" Margin="0 0 30 0"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="0 3 10 3" Grid.Column="1" Height="300">
+            <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Center">
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Width" Value="80"/>
+                        <Setter Property="Height" Value="30"/>
+                        <Setter Property="Margin" Value="10"/>
+                    </Style>
+                </StackPanel.Resources>
+                <StackPanel>
+                <Label Content="Sorted by first way:" />
+                <ListBox x:Name="LB1" Height="200"/>
+                <Button Content="Show" Click="fillTheLB1"/>
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Second way:" />
+                <ListBox x:Name="LB2" Height="200"/>
+                <Button Content="Show" Click="fillTheLB2"/>
+            </StackPanel>
+        </StackPanel>
+        </Border>
+    </Grid>
+</Window>
+
+
+
+
+...........................................................
+
+
+using System;
+
+using System.Windows;
+
+using System.Windows.Input;
+using System.Collections;
+
+namespace AllTheSortingWaysMN_07._03._22
+{
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        public string[] studentsArray; public int i = 0;
+        private void InitializingArrayTB(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                studentsArray = new string[Convert.ToInt32(NumberOFStudentsTB.Text)];
+        }
+        // What we have in a textBox we're adding to the array and to the listbox
+        private void addFirstNameToListBox(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                studentsArray[i++] = NameOfStudent.Text;
+                ListOfStudentsLB.Items.Add(NameOfStudent.Text);
+                NameOfStudent.Clear();
+            }
+        }
+
+        // implementing Swap method
+        public void Swap(int first, int second)
+        {
+            string temp = studentsArray[first];
+            studentsArray[first] = studentsArray[second];
+            studentsArray[second] = temp;
+        }
+        //implementing selection sort
+        public void SelectionSort()
+        {
+            for (int j = 0; j < studentsArray.Length; j++)
+            {
+                int smallest = j;
+                for (int index = 1; index < studentsArray.Length; index++)
+                    if (String.Compare(studentsArray[index], studentsArray[smallest]) == -1)
+                        smallest = index;
+                Swap(j, smallest);
+            }
+        }
+
+        //the first method sorting array elements
+        // implementin insertion sort
+
+        public void InsertionSort()
+        {
+            for (int nexT = 1; nexT < studentsArray.Length; nexT++)
+            {
+                string insert = studentsArray[nexT];
+                int moveItem = nexT;
+                while(moveItem>0 && String.Compare(studentsArray[moveItem - 1], insert)<0)
+                {
+                    studentsArray[moveItem] = studentsArray[moveItem - 1];
+                    moveItem--;
+                }
+                studentsArray[moveItem] = insert;
+            }
+
+        }
+
+        private void fillTheLB1(object sender, RoutedEventArgs e)
+        {
+            LB1.Items.Clear();
+            SelectionSort();
+            foreach (string item in studentsArray) 
+            LB1.Items.Add(item);
+        }
+
+        private void fillTheLB2(object sender, RoutedEventArgs e)
+        {
+            LB2.Items.Clear();
+            InsertionSort();
+            foreach (string item in studentsArray)
+            LB2.Items.Add(item);
+        }
+    }
+}

@@ -1,0 +1,39 @@
+using System;
+using System.IO;
+using System.Windows.Input;
+
+namespace GetAccessToSubFoldersMN_11._03._22
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            DriveInfo[] myDrives = DriveInfo.GetDrives();
+        /*    foreach(DriveInfo drive in myDrives)
+            {
+                Console.WriteLine($"Drive name: {drive.Name}");
+                Console.WriteLine($"Total space: {drive.TotalSize/(1024*1024*1024)}GB");
+                Console.WriteLine($"OS: {drive.VolumeLabel}");
+                Console.WriteLine($"Free space: {drive.TotalFreeSpace}");
+            }
+        */
+            string folderName = myDrives[0].ToString();
+            Console.WriteLine($"The content of {folderName}");
+            var directory = new DirectoryInfo(folderName);
+            if (directory.Exists)
+            {
+                Console.WriteLine("SubFolders:");
+                DirectoryInfo[] dirs = directory.GetDirectories();
+                foreach (DirectoryInfo folder in dirs)
+                    Console.WriteLine(folder.FullName);
+            }
+            Console.WriteLine(" ");
+            Console.WriteLine("Files:");
+            FileInfo[] files = directory.GetFiles();
+            foreach (FileInfo file in files)
+                Console.WriteLine(file.FullName + " was created at " );
+
+            Console.ReadKey();
+        }
+    }
+}

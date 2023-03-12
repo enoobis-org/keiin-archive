@@ -1,0 +1,100 @@
+<Window x:Class="AllTheSortingWaysMN_07._03._22.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AllTheSortingWaysMN_07._03._22"
+        mc:Ignorable="d"
+        Title="The sorting way" Height="490" Width="850">
+    <Window.Resources>
+        <Style TargetType="ListBox">
+            <Setter Property="Width" Value="250"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="320"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Border BorderBrush="Gray" BorderThickness="1" Margin="3">
+            <StackPanel HorizontalAlignment="Left" Margin="5 0" Grid.Column="0">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Number of students:"/>
+                    <TextBox x:Name="NumberOFStudentsTB" Width="100" Height="20" KeyDown="InitializingArray" Margin="0 3 0 0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Enter the first name:"/>
+                    <TextBox x:Name="NameOfStudent" Width="100" Height="20" Margin="0 3 0 0"/>
+                </StackPanel>
+                <StackPanel>
+                <Label Content="The list of students:"/>
+                <ListBox x:Name="ListOfStudents" Height="305" Margin="0 0 30 0"/>
+                </StackPanel>
+            </StackPanel>
+                </Border>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Center">
+            <StackPanel>
+                <Label Content="Sorted by first way:" />
+                <ListBox x:Name="SortedFirstWay" Height="200"/>
+                <Button Content="Show" Width="50"/>
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Second way:" />
+                <ListBox x:Name="SortedSecondWay" Height="200"/>
+                <Button Content="Show" Width="50"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
+
+
+...........................................................
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace AllTheSortingWaysMN_07._03._22
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        public int[] myArray;
+        public void InitializingArray()
+        {
+            int theNumberOfElInArray = Convert.ToInt32(NumberOFStudentsTB.Text);
+            myArray = new int[theNumberOfElInArray];
+            Random number = new Random();
+            for (int i = 0; i < myArray.Length; i++)
+                myArray[i] = number.Next(10, 150);
+        }
+        private void InitializingArray(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                InitializingArray();
+                foreach (int item in myArray)
+                    ListOfStudents.Items.Add(item);
+            }
+        }
+    }
+}
